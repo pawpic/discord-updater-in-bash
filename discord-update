@@ -1,0 +1,12 @@
+#!/bin/bash
+if [ "$UID" != 0 ]; then
+	echo "run by root"
+	exit 1
+fi
+echo "Downloading discord update [.deb]"
+curl -L "https://discord.com/api/download/stable?platform=linux&format=deb" -o discord.deb 2>/dev/null
+echo "Updateing discord"
+dpkg -i discord.deb 2>/dev/null
+echo "Discord updated"
+echo "clean up"
+rm discord.deb
